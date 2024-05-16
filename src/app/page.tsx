@@ -166,7 +166,6 @@ export default function Home() {
         </Select>
         <div className="grow"></div>
         <Button
-          variant="bordered"
           className="mx-2 border-2 border-gray-400 text-gray-400"
           onClick={(e) => {
             e.preventDefault();
@@ -268,7 +267,6 @@ export default function Home() {
       {loading || (
         <div className="py-3 flex items-center justify-center">
           <Button
-            variant="bordered"
             className="w-1/4 border-2 border-gray-500 text-gray-500"
             onClick={() => {
               setCurrentPage(currentPage + 1);
