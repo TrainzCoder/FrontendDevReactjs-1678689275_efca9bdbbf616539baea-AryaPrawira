@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const myAxiosTripAdvisor = axios.create({
     headers: {
-        'x-rapidapi-key': '045c3c1e0cmsh50c509b1006c0a9p1fcc48jsn609d520cf392',
+        'x-rapidapi-key': '7c77e19a85mshbf55054d1095a92p10a430jsn16b4c683ac58',
         'x-rapidapi-host': 'tripadvisor16.p.rapidapi.com',
         'Content-Type': 'application/json'
     }

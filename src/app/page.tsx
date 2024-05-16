@@ -42,15 +42,21 @@ export default function Home() {
   });
   const printRatingStar = (rating: number) => {
     const fullStarComponent = <FaStar />;
-    const halfStarComponent = <FaStarHalf />;
+    const halfStarComponent = <FaStarHalf />; 
+
     const starComponent = [];
+    
     for (let i = 0; i < Math.floor(rating); i++) {
       starComponent.push(fullStarComponent);
     }
+
     if (rating % 1 > 0) {
       starComponent.push(halfStarComponent);
     }
+
     return starComponent;
+
+
   };
   const getData = () => {
     if (loading) return;
@@ -92,15 +98,15 @@ export default function Home() {
   }, [data]);
   return (
     <main className="flex min-h-screen flex-col p-12">
-      <p className="text-5xl">Restaurants</p>
-      <p className="w-2/4 text-justify">
+      <p className="text-5xl mb-3">Restaurants</p>
+      <p className="w-3/4 md:w-2/4 text-justify">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat dolore
         cum eius quae sed esse, similique rerum, voluptatum quasi nemo earum
         distinctio suscipit adipisci libero aliquam consectetur. Voluptas,
         explicabo adipisci!
       </p>
       <div className="py-3 mt-3 mb-6 border-y-2 flex flex-row items-center">
-        <div className="flex items-center">
+        <div className="flex items-center ">
           <p>Filter by : </p>
         </div>
         <div className="flex items-center space-x-2 mx-2">
@@ -160,6 +166,8 @@ export default function Home() {
         </Select>
         <div className="grow"></div>
         <Button
+          variant="bordered"
+          className="mx-2 border-2 border-gray-400 text-gray-400"
           onClick={(e) => {
             e.preventDefault();
             setFilterParameter({
@@ -172,7 +180,7 @@ export default function Home() {
           CLEAR ALL
         </Button>
       </div>
-      <div className="py-3 grid grid-cols-4 gap-4">
+      <div className="py-3 grid grid-cols-1 md:grid-cols-4 gap-2">
         {data?.data.data.map((item, index) => {
           if (
             filterParameter.openNow &&
@@ -189,7 +197,7 @@ export default function Home() {
           )
             return null;
           return (
-            <Card key={index} className="flex flex-col justify-between">
+            <Card key={index} className="flex flex-col justify-between border-none">
               <CardHeader>
                 <img
                   src={
@@ -198,10 +206,13 @@ export default function Home() {
                     new URL(item.heroImgUrl).pathname
                   }
                   alt="gambar"
+                  className="w-full h-48 object-cover"
                 />
-                <CardTitle>{item.name}</CardTitle>
+                <CardTitle 
+                  className="text-lg text-ellipsis truncate"
+                >{item.name}</CardTitle>
                 <CardDescription className="flex flex-col items-start">
-                  <div className="flex flex-row items-center">
+                  <div className="flex flex-row items-center mb-2">
                     {printRatingStar(item.averageRating)}
                   </div>
                   <div className="flex flex-row w-full justify-between">
@@ -222,16 +233,16 @@ export default function Home() {
                     </div>
                     <div>
                       {item.currentOpenStatusCategory === "OPEN" ? (
-                        <div className="flex flex-row items-center">
+                        <div className="flex flex-row items-center min-w-max">
                           <FaCircle className="text-green-500" />
-                          <span className="ml-1">
+                          <span className="ml-1 uppercase text-xs">
                             {item.currentOpenStatusText}
                           </span>
                         </div>
                       ) : (
                         <div className="flex flex-row items-center">
-                          <FaCircle className="text-red-500" />
-                          <span className="ml-1">
+                          <FaCircle className="text-red-500 " />
+                          <span className="ml-1 uppercase text-xs">
                             {item.currentOpenStatusText}
                           </span>
                         </div>
@@ -241,8 +252,8 @@ export default function Home() {
                 </CardDescription>
               </CardHeader>
               <CardFooter>
-                <Button className="w-full bg-blue-500" asChild>
-                  <Link href={`/detail/${item.restaurantsId}`}>Learn More</Link>
+                <Button className="w-full bg-[#243169]" asChild>
+                  <Link href={`/detail/${item.restaurantsId}`}>LEARN MORE</Link>
                 </Button>
               </CardFooter>
             </Card>
@@ -257,7 +268,8 @@ export default function Home() {
       {loading || (
         <div className="py-3 flex items-center justify-center">
           <Button
-            className="w-1/4"
+            variant="bordered"
+            className="w-1/4 border-2 border-gray-500 text-gray-500"
             onClick={() => {
               setCurrentPage(currentPage + 1);
             }}
