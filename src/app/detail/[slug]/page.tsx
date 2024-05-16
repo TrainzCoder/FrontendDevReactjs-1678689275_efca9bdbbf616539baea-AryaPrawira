@@ -27,7 +27,7 @@ function DetailPage({ params }: { params: { slug: string } }) {
       });
   }, []);
 
-  const printRatingStar = (rating: number) => {
+  const printRatingStar = (rating: any) => {
     const fullStarComponent = <FaStar />;
     const halfStarComponent = <FaStarHalf />;
 
